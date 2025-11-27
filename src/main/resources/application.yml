@@ -1,2 +1,40 @@
 server:
   port: 8322
+
+spring:
+  # 数据库配置
+  datasource:
+    driver-class-name: org.sqlite.JDBC
+    url: jdbc:sqlite:flow-engine.db
+    username: 
+    password: 
+  # Redis配置
+  redis:
+    host: localhost
+    port: 6379
+    password: 
+    database: 0
+  # Jackson配置
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+# MyBatis-Plus配置
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**/*.xml
+  type-aliases-package: com.aicoding.flow.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# 流程引擎配置
+flow:
+  engine:
+    # 流程实例超时时间（分钟）
+    instance-timeout: 60
+    # 节点执行超时时间（分钟）
+    node-timeout: 10
+    # 并行执行最大线程数
+    parallel-max-threads: 10
+    # 流程定义缓存时间（秒）
+    definition-cache-time: 3600

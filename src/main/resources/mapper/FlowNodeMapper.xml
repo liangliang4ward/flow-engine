@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aicoding.flow.mapper.FlowNodeMapper">
+
+    <select id="selectByInstanceId" resultType="com.aicoding.flow.entity.FlowNode">
+        SELECT * FROM flow_node WHERE instance_id = #{instanceId}
+    </select>
+
+    <select id="selectByInstanceIdAndNodeId" resultType="com.aicoding.flow.entity.FlowNode">
+        SELECT * FROM flow_node WHERE instance_id = #{instanceId} AND node_id = #{nodeId}
+    </select>
+
+    <select id="selectPendingNodesByInstanceId" resultType="com.aicoding.flow.entity.FlowNode">
+        SELECT * FROM flow_node WHERE instance_id = #{instanceId} AND status = 0
+    </select>
+
+</mapper>

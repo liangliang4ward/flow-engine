@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aicoding.flow.mapper.FlowDefinitionMapper">
+
+    <select id="selectByCodeAndVersion" resultType="com.aicoding.flow.entity.FlowDefinition">
+        SELECT * FROM flow_definition WHERE code = #{code} AND version = #{version}
+    </select>
+
+    <select id="selectLatestVersionByCode" resultType="com.aicoding.flow.entity.FlowDefinition">
+        SELECT * FROM flow_definition WHERE code = #{code} ORDER BY version DESC LIMIT 1
+    </select>
+
+</mapper>
