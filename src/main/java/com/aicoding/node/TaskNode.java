@@ -9,7 +9,7 @@ import java.util.Map;
  * @author gll
  * dateTime 2025/11/27 15:55
  */
-@Component("taskNode")
+@Component("task")
 public class TaskNode extends AbstractNode {
     @Override
     public boolean execute() throws Exception {

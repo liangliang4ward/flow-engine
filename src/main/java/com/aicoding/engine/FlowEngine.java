@@ -73,7 +73,6 @@ public class FlowEngine {
     }
 
     /**
-    /**
      * 执行流程实例
      * @param instance 流程实例
      * @param flowDefinition 流程定义
@@ -123,9 +122,16 @@ public class FlowEngine {
                     .collect(Collectors.toList());
 
             // 处理条件判断，选择下一个节点
-            List<EdgeConfig> matchingEdges = outgoingEdges.stream()
-                    .filter(edge -> evaluateCondition(edge, variables))
-                    .collect(Collectors.toList());
+            List<EdgeConfig> matchingEdges = new java.util.ArrayList<>();
+            for (EdgeConfig edge : outgoingEdges) {
+                try {
+                    if (evaluateCondition(edge, variables)) {
+                        matchingEdges.add(edge);
+                    }
+                } catch (Exception e) {
+                    throw new RuntimeException("条件判断失败: " + edge.getCondition(), e);
+                }
+            }
 
             if (matchingEdges.isEmpty()) {
                 throw new RuntimeException("没有找到匹配的连接线: " + currentNodeId);
@@ -178,8 +184,7 @@ public class FlowEngine {
      * @return 节点实例
      */
     private AbstractNode getNodeByType(String nodeType) {
-        String beanName = nodeType + "Node";
-        AbstractNode node = nodeMap.get(beanName);
+        AbstractNode node = nodeMap.get(nodeType);
         if (node == null) {
             throw new IllegalArgumentException("不支持的节点类型: " + nodeType);
         }

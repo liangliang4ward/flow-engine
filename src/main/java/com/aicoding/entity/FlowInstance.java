@@ -65,4 +65,12 @@ public class FlowInstance {
      * 完成时间
      */
     private LocalDateTime finishTime;
+
+    public LocalDateTime getStartTime() {
+        return createTime;
+    }
+
+    public void setStartTime(LocalDateTime startTime) {
+        this.createTime = startTime;
+    }
 }

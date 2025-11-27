@@ -26,8 +26,7 @@ public class FlowDefinitionServiceImpl extends ServiceImpl<FlowDefinitionMapper,
     public FlowDefinition getLatestVersion(String flowId) {
         QueryWrapper<FlowDefinition> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("flow_id", flowId)
-                .orderByDesc("version")
-                .last("LIMIT 1");
+                .orderByDesc("version");
         return getOne(queryWrapper);
     }
 }

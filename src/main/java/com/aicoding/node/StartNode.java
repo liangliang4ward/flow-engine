@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
  * @author gll
  * dateTime 2025/11/27 15:50
  */
-@Component("startNode")
+@Component("start")
 public class StartNode extends AbstractNode {
     @Override
     public boolean execute() throws Exception {
